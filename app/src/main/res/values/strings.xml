@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">DriverFit</string>
+
+    <!-- Auth -->
+    <string name="password">Password</string>
+    <string name="confirm_password">Konfirmasi Password</string>
+    <string name="welcome">WELCOME TO DRIVERFIT</string>
+    <string name="login">Login</string>
+    <string name="email_string">Email</string>
+    <string name="password_string">Masukan Password</string>
+    <string name="forgot_password_string">Lupa Password?</string>
+    <string name="daftar">Daftar</string>
+    <string name="nama_string">Nama Lengkap</string>
+    <string name="nohp_string">No HP</string>
+    <string name="belum_punya_akun">Belum Punya Akun? Daftar</string>
+    <string name="sudah_punya_akun">Sudah Punya Akun? Masuk</string>
+    <string name="login_dengan_nomor_telepon">Log in dengan no. handphone</string>
+    <string name="register">Daftar DriverFit</string>
+
 </resources>
