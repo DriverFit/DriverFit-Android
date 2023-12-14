@@ -4,19 +4,100 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.profile.NotificationsFragment">
+    tools:context=".ui.profile.ProfileFragment">
 
-    <TextView
-        android:id="@+id/text_notifications"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/civPicture"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="52dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/cad" />
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Fulanah"
+        android:textColor="#004D91"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/civPicture"
+        app:layout_constraintStart_toStartOf="@+id/civPicture"
+        app:layout_constraintTop_toBottomOf="@+id/civPicture" />
+
+
+    <ImageView
+        android:id="@+id/ivTelp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="32dp"
+        android:src="@drawable/baseline_phone"
+        app:layout_constraintBottom_toBottomOf="@+id/tvTelpValue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvTelp" />
+
+
+    <TextView
+        android:id="@+id/tvTelp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:text="Telpon"
+        android:textColor="#004D91"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvTelpValue"
+        app:layout_constraintStart_toEndOf="@+id/ivTelp"
+        app:layout_constraintTop_toBottomOf="@+id/tvName" />
+
+
+    <TextView
+        android:id="@+id/tvTelpValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+64 888888888"
+        android:textColor="#004D91"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/tvTelp"
+        app:layout_constraintTop_toBottomOf="@+id/tvTelp" />
+
+    <ImageView
+        android:id="@+id/ivEmail"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/baseline_email"
+        app:layout_constraintBottom_toBottomOf="@+id/tvEmailValue"
+        app:layout_constraintStart_toStartOf="@+id/ivTelp"
+        app:layout_constraintTop_toTopOf="@+id/tvEmail" />
+
+
+    <TextView
+        android:id="@+id/tvEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:text="Email"
+        android:textColor="#004D91"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@+id/ivTelp"
+        app:layout_constraintTop_toBottomOf="@+id/tvTelpValue" />
+
+
+    <TextView
+        android:id="@+id/tvEmailValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="fulanah@gmail.com"
+        android:textColor="#004D91"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/tvEmail"
+        app:layout_constraintTop_toBottomOf="@+id/tvEmail" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

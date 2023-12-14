@@ -27,4 +27,7 @@
     <string name="title_dectection">Detection</string>
     <string name="title_profile">Profile</string>
 
+    <!-- Content Description -->
+    <string name="cd_camera">Camera</string>
+
 </resources>
