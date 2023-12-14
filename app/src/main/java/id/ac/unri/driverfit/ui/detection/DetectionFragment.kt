@@ -27,10 +27,6 @@ class DetectionFragment : Fragment() {
 
         _binding = FragmentDetectionBinding.inflate(inflater, container, false)
 
-        val textView: TextView = binding.textDashboard
-        detectionViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
         return binding.root
     }
 
