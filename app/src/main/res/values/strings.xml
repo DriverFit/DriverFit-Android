@@ -16,8 +16,15 @@
     <string name="sudah_punya_akun">Sudah Punya Akun? Masuk</string>
     <string name="login_dengan_nomor_telepon">Log in dengan no. handphone</string>
     <string name="register">Daftar DriverFit</string>
+
+    <!-- Home -->
     <string name="time_access"> | 1 Des 2023 17.30</string>
     <string name="tv_welcome_user">Halo Tri</string>
     <string name="intro_homescreen">Siap berkendara hari ini?</string>
+
+    <!-- Bottom Navigation -->
+    <string name="title_home">Home</string>
+    <string name="title_dectection">Detection</string>
+    <string name="title_profile">Profile</string>
 
 </resources>
