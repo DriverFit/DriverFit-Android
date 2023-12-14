@@ -2,7 +2,5 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="blue">#004D91</color>
-
-    <color name="ic_launcher_driverfit_background">#FFFFFF</color>
+    <color name="blue">004D91</color>
 </resources>
