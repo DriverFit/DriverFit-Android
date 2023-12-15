@@ -29,5 +29,7 @@
 
     <!-- Content Description -->
     <string name="cd_camera">Camera</string>
+    <string name="cd_gallery">Gallery</string>
+    <string name="cd_switch">Switch Camera</string>
 
 </resources>

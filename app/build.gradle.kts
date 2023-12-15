@@ -65,6 +65,15 @@ dependencies {
     // Splash Screen Api
     implementation("androidx.core:core-splashscreen:1.0.1")
 
+    // CameraX dependencies
+    val cameraxVersion = "1.3.1"
+    implementation("androidx.camera:camera-camera2:$cameraxVersion")
+    implementation("androidx.camera:camera-view:$cameraxVersion")
+    implementation("androidx.camera:camera-lifecycle:$cameraxVersion")
+
+    // Timber
+    implementation("com.jakewharton.timber:timber:5.0.1")
+
     // Testing dependencies
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
