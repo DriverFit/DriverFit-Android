@@ -7,7 +7,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -24,7 +23,6 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.lifecycle.lifecycleScope
-import com.google.android.material.snackbar.Snackbar
 import id.ac.unri.driverfit.data.remote.TfLiteFaceUserClassifier
 import id.ac.unri.driverfit.databinding.ActivityCameraBinding
 import id.ac.unri.driverfit.ui.camera.CameraViewModel
@@ -159,11 +157,7 @@ class CameraActivity : ComponentActivity() {
                     context = this@CameraActivity
                 ),
                 onResult = {
-                    if (it.isEmpty()) {
-                        binding.tvResult.text = "No face detected"
-                    } else {
-                        binding.tvResult.text = it.first().label
-                    }
+                    binding.tvResult.text = it.label
                 }
             )
         )
