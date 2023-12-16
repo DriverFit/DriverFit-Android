@@ -28,7 +28,7 @@ class TfLiteFaceUserClassifier(
         classifier = model
     }
 
-    override fun classify(file: File): SleepyDetection.Outputs? {
+    override fun classify(file: File): Classification {
         if (classifier == null) {
             setupModel()
         }
@@ -42,7 +42,7 @@ class TfLiteFaceUserClassifier(
 
         classifier?.close()
 
-        return result
+        TODO()
     }
 
     override fun classify(bitmap: Bitmap, rotation: Int): Classification {

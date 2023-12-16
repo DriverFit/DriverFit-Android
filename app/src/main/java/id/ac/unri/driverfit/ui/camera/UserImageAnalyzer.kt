@@ -1,10 +1,10 @@
 package id.ac.unri.driverfit.ui.camera
 
+import android.graphics.Bitmap
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
 import id.ac.unri.driverfit.domain.model.Classification
 import id.ac.unri.driverfit.domain.repository.UserClassification
-import id.ac.unri.driverfit.ml.SleepyDetection
 
 class UserImageAnalyzer(
     private val classifier: UserClassification,
@@ -16,9 +16,9 @@ class UserImageAnalyzer(
 
         if (framecounter % 60 == 0) {
             val rotationDegrees = image.imageInfo.rotationDegrees
-            val bitmap = image
-                .toBitmap()
-                .centerCrop(256, 256)
+            var bitmap = image.toBitmap()
+
+            bitmap = Bitmap.createScaledBitmap(bitmap, 256, 256, false)
 
             val result = classifier.classify(bitmap, rotationDegrees)
             onResult(result)
