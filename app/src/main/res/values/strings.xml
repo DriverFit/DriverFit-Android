@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">DriverFit</string>
 
+    <!-- Onboarding -->
+    <string name="get_started">Get Started</string>
+    <string name="title_onboarding">DriverFit</string>
+    <string name="description_onboarding">DriverFit adalah aplikasi yang dapat membantu anda untuk mengetahui kondisi anda sebelum berkendara</string>
+
     <!-- Auth -->
     <string name="password">Password</string>
     <string name="confirm_password">Konfirmasi Password</string>
@@ -27,9 +32,21 @@
     <string name="title_dectection">Detection</string>
     <string name="title_profile">Profile</string>
 
+    <!-- Error -->
+    <string name="error_name_is_required">Name is required</string>
+    <string name="error_name_min_char">Minimum characters is 3</string>
+    <string name="error_name_max_char">Maximum characters is 50</string>
+    <string name="error_invalid_email">Email is invalid</string>
+    <string name="error_email_is_required">Email is required</string>
+    <string name="error_password_is_required">Password is required</string>
+    <string name="error_password_min_char">Minimum characters is 8</string>
+    <string name="error_password_max_char">Maximum characters is 50</string>
+    <string name="error_password_not_match">Password doesn\'t match</string>
+
     <!-- Content Description -->
     <string name="cd_camera">Camera</string>
     <string name="cd_gallery">Gallery</string>
     <string name="cd_switch">Switch Camera</string>
+    <string name="setting">Setting</string>
 
 </resources>

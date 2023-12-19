@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
+        android:name=".DriverFItApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -19,7 +20,7 @@
         android:theme="@style/App.Starting.Theme"
         tools:targetApi="31">
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.OnboardingActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,7 +30,18 @@
         </activity>
 
         <activity
+            android:name=".ui.AuthActivity"
+            android:theme="@style/Theme.DriverFit"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.MainActivity"
+            android:theme="@style/Theme.DriverFit"
+            android:exported="false" />
+
+        <activity
             android:name=".ui.CameraActivity"
+            android:theme="@style/Theme.DriverFit"
             android:exported="false" />
     </application>
 </manifest>
