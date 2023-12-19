@@ -2,6 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/setting_nav"
-        android:icon="@drawable/baseline_settings_24"
-        android:title="@string/settings" />
+        android:icon="@drawable/baseline_setting"
+        android:title="@string/setting" />
 </menu>

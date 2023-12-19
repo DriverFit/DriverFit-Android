@@ -13,6 +13,7 @@ import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -80,7 +81,7 @@ class ProfileFragment : Fragment(), MenuProvider {
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
         return when (menuItem.itemId) {
             R.id.action_setting -> {
-                TODO("Goto Setting Activity")
+                findNavController().navigate(R.id.action_navigation_profile_to_settingFragment)
                 true
             }
 
@@ -88,7 +89,6 @@ class ProfileFragment : Fragment(), MenuProvider {
                 viewModel.signout()
                 true
             }
-
             else -> false
         }
     }

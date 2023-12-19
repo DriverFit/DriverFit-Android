@@ -26,12 +26,6 @@
             android:layout_marginStart="32dp"/>
     </androidx.appcompat.widget.Toolbar>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/white_300"
-        app:layout_constraintBottom_toTopOf="@+id/nav_view" />
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
         android:layout_width="0dp"
