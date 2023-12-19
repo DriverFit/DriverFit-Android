@@ -1,13 +1,39 @@
 package id.ac.unri.driverfit.ui.profile
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
+import id.ac.unri.driverfit.domain.usecase.GetUserUseCase
+import id.ac.unri.driverfit.domain.usecase.SignOutUseCase
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.launch
+import timber.log.Timber
+import javax.inject.Inject
 
-class ProfileViewModel : ViewModel() {
+@HiltViewModel
+class ProfileViewModel @Inject constructor(
+    getUserUseCase: GetUserUseCase,
+    private val signOutUseCase: SignOutUseCase
+) : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is notifications Fragment"
+    val isLoogedIn = getUserUseCase.invoke().asLiveData()
+
+    private val _snackbar = MutableSharedFlow<String>()
+    val snackbar = _snackbar.asLiveData()
+    fun signout(): Boolean {
+        var success = false
+        viewModelScope.launch {
+            signOutUseCase()
+                .onSuccess {
+                    success = true
+                }
+                .onFailure { e ->
+                    Timber.e(e)
+                    _snackbar.emit("Sign out was failed")
+                }
+        }
+        return success
     }
-    val text: LiveData<String> = _text
+
 }

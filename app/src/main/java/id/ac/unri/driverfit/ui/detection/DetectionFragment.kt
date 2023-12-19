@@ -9,8 +9,9 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 import id.ac.unri.driverfit.databinding.FragmentDetectionBinding
 import id.ac.unri.driverfit.ui.CameraActivity
 import id.ac.unri.driverfit.ui.utils.cameraPermissionRequest
@@ -18,7 +19,10 @@ import id.ac.unri.driverfit.ui.utils.isPermissionGranted
 import id.ac.unri.driverfit.ui.utils.openPermissionSetting
 import java.io.File
 
+@AndroidEntryPoint
 class DetectionFragment : Fragment() {
+
+    private val detectionViewModel by viewModels<DetectionViewModel>()
 
     private val cameraPermission = android.Manifest.permission.CAMERA
     private var _binding: FragmentDetectionBinding? = null
@@ -55,8 +59,6 @@ class DetectionFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val detectionViewModel = ViewModelProvider(this)[DetectionViewModel::class.java]
-
         _binding = FragmentDetectionBinding.inflate(inflater, container, false)
 
         binding.cameraButton.setOnClickListener {
@@ -102,5 +104,7 @@ class DetectionFragment : Fragment() {
 
         val data = result.data
         val imageFile = data?.getSerializableExtra(CameraActivity.KEY_IMAGE_RESULT) as File
+
+
     }
 }

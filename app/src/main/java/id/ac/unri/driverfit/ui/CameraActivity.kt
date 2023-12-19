@@ -23,6 +23,7 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.lifecycle.lifecycleScope
+import dagger.hilt.android.AndroidEntryPoint
 import id.ac.unri.driverfit.data.remote.TfLiteFaceUserClassifier
 import id.ac.unri.driverfit.databinding.ActivityCameraBinding
 import id.ac.unri.driverfit.ui.camera.CameraViewModel
@@ -41,10 +42,10 @@ import java.util.concurrent.Executors
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
+@AndroidEntryPoint
 class CameraActivity : ComponentActivity() {
 
     private lateinit var binding: ActivityCameraBinding
-
     private lateinit var cameraSelector: CameraSelector
     private lateinit var imageCapture: ImageCapture
     private lateinit var processCameraProvider: ProcessCameraProvider
@@ -52,6 +53,8 @@ class CameraActivity : ComponentActivity() {
     private lateinit var imageAnalysis: ImageAnalysis
 
     private val cameraViewModel = viewModels<CameraViewModel>()
+    private var isDetecting = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         hideSystemBars()
         super.onCreate(savedInstanceState)
@@ -66,7 +69,7 @@ class CameraActivity : ComponentActivity() {
         setContentView(binding.root)
 
         cameraSelector =
-            CameraSelector.Builder().requireLensFacing(CameraSelector.LENS_FACING_BACK).build()
+            CameraSelector.Builder().requireLensFacing(CameraSelector.LENS_FACING_FRONT).build()
 
         cameraViewModel.value.cameraProvider.observe(this) { provider ->
             processCameraProvider = provider
@@ -84,18 +87,7 @@ class CameraActivity : ComponentActivity() {
         }
 
         binding.cameraButton.setOnClickListener {
-            lifecycleScope.launch(Dispatchers.IO) {
-                val capturedImage = imageCapture.takePicture(Executors.newSingleThreadExecutor())
-                val backCamera = cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA
-
-                val intent = Intent().apply {
-                    BitmapUtils.reduceSize(capturedImage, backCamera)
-                    putExtra(KEY_IMAGE_RESULT, capturedImage)
-                }
-
-                setResult(RESULT_SUCCESS, intent)
-                finish()
-            }
+            isDetecting = !isDetecting
         }
 
         binding.switchButton.setOnClickListener {
@@ -157,7 +149,20 @@ class CameraActivity : ComponentActivity() {
                     context = this@CameraActivity
                 ),
                 onResult = {
-                    binding.tvResult.text = it.label
+                    if (!isDetecting) return@UserImageAnalyzer
+                    lifecycleScope.launch(Dispatchers.IO) {
+                        val capturedImage =
+                            imageCapture.takePicture(Executors.newSingleThreadExecutor())
+                        val backCamera = cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA
+
+                        val intent = Intent().apply {
+                            BitmapUtils.reduceSize(capturedImage, backCamera)
+                            putExtra(KEY_IMAGE_RESULT, capturedImage)
+                        }
+
+                        setResult(RESULT_SUCCESS, intent)
+                        finish()
+                    }
                 }
             )
         )
