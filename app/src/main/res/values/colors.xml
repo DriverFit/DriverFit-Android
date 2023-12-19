@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="white">#FFFDFE</color>
+    <color name="white_300">#E3E3E3</color>
     <color name="blue">#004D91</color>
+    <color name="dark_blue">#05345E</color>
+
 
     <color name="ic_launcher_driverfit_background">#FFFFFF</color>
 </resources>

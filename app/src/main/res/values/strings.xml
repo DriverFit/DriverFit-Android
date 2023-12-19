@@ -31,5 +31,11 @@
     <string name="cd_camera">Camera</string>
     <string name="cd_gallery">Gallery</string>
     <string name="cd_switch">Switch Camera</string>
+    <string name="settings">Settings</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="setting">Setting</string>
+    <string name="log_out">Log Out</string>
+    <string name="language_setting">Language Setting</string>
 
 </resources>
