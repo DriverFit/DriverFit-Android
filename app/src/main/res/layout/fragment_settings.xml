@@ -4,29 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.setting.SettingFragment">
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:elevation="4dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            style="@style/Text.AppTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/setting"
-            android:textStyle="bold"
-            android:textSize="24sp"
-            android:layout_marginStart="32dp"/>
-    </androidx.appcompat.widget.Toolbar>
+    tools:context=".ui.setting.SettingsFragment">
 
     <TextView
-        android:id="@+id/btn_language_setting"
+        android:id="@+id/btn_theme_setting"
         style="@style/Text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,13 +17,13 @@
         android:focusable="true"
         android:gravity="center_vertical"
         android:padding="16dp"
-        android:text="@string/language_setting"
-        app:drawableStartCompat="@drawable/baseline_language_24"
+        android:text="@string/theme_setting"
+        app:drawableStartCompat="@drawable/baseline_theme"
         app:drawableTint="@color/blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/btn_logout"
@@ -60,6 +41,6 @@
         app:drawableTint="@color/blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_language_setting" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_theme_setting" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

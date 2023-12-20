@@ -3,14 +3,18 @@ package id.ac.unri.driverfit.ui
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import dagger.hilt.android.AndroidEntryPoint
 import id.ac.unri.driverfit.databinding.ActivityOnboardingBinding
 import id.ac.unri.driverfit.ui.onboarding.OnboardingAdapter
 import id.ac.unri.driverfit.ui.onboarding.OnboardingViewModel
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 @AndroidEntryPoint
@@ -26,6 +30,25 @@ class OnboardingActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen().setKeepOnScreenCondition {
+
+            lifecycleScope.launch {
+                viewModel.darkTheme.collectLatest {
+                    when (it) {
+                        true -> {
+                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                        }
+
+                        false -> {
+                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                        }
+
+                        null -> {
+                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+                        }
+                    }
+                }
+            }
+
             when (runBlocking { viewModel.loggedIn.first() }) {
                 true -> Intent(this, MainActivity::class.java)
                 false -> when (runBlocking { viewModel.onboarding.first() }) {

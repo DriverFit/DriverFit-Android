@@ -45,7 +45,6 @@
         app:layout_constraintStart_toStartOf="@+id/civPicture"
         app:layout_constraintTop_toBottomOf="@+id/civPicture" />
 
-
     <ImageView
         android:id="@+id/ivTelp"
         android:layout_width="30dp"
@@ -55,7 +54,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/tvTelpValue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tvTelp" />
-
 
     <TextView
         android:id="@+id/tvTelp"
@@ -69,7 +67,6 @@
         app:layout_constraintBottom_toTopOf="@+id/tvTelpValue"
         app:layout_constraintStart_toEndOf="@+id/ivTelp"
         app:layout_constraintTop_toBottomOf="@+id/tvName" />
-
 
     <TextView
         android:id="@+id/tvTelpValue"
@@ -103,7 +100,6 @@
         app:layout_constraintStart_toEndOf="@+id/ivTelp"
         app:layout_constraintTop_toBottomOf="@+id/tvTelpValue" />
 
-
     <TextView
         android:id="@+id/tvEmailValue"
         android:layout_width="wrap_content"
@@ -113,6 +109,5 @@
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="@+id/tvEmail"
         app:layout_constraintTop_toBottomOf="@+id/tvEmail" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

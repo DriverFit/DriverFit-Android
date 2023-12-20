@@ -8,6 +8,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
@@ -15,9 +16,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import id.ac.unri.driverfit.R
+import id.ac.unri.driverfit.databinding.ActivityMainBinding
 import id.ac.unri.driverfit.databinding.FragmentProfileBinding
 import id.ac.unri.driverfit.ui.AuthActivity
 
@@ -80,13 +83,8 @@ class ProfileFragment : Fragment(), MenuProvider {
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
         return when (menuItem.itemId) {
-            R.id.action_setting -> {
-                findNavController().navigate(R.id.action_navigation_profile_to_settingFragment)
-                true
-            }
-
-            R.id.action_signout -> {
-                viewModel.signout()
+            R.id.action_settings -> {
+                findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToSettingFragment())
                 true
             }
             else -> false

@@ -14,12 +14,12 @@ import retrofit2.http.PUT
 
 interface UserService {
 
-    @POST("v1/accounts:signUp?key=AIzaSyAqTYYug-IVseFZT5cMy-k9TyrOiMVlhLk\n")
+    @POST("v1/accounts:signUp?key=AIzaSyAqTYYug-IVseFZT5cMy-k9TyrOiMVlhLk")
     suspend fun signUp(
         @Body req: SignUpRequest
     ): Response<UserResponse>
 
-    @POST("v1/accounts:signInWithPassword?key=AIzaSyAqTYYug-IVseFZT5cMy-k9TyrOiMVlhLk\n")
+    @POST("v1/accounts:signInWithPassword?key=AIzaSyAqTYYug-IVseFZT5cMy-k9TyrOiMVlhLk")
     suspend fun signIn(
         @Body req: SignInRequest
     ): Response<UserResponse>

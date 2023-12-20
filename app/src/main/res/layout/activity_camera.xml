@@ -7,7 +7,6 @@
     android:orientation="vertical"
     tools:context=".ui.CameraActivity">
 
-
     <androidx.camera.view.PreviewView
         android:id="@+id/preview_view"
         android:layout_width="match_parent"
@@ -53,6 +52,5 @@
             android:layout_height="45dp"
             android:background="@drawable/baseline_cameraswitch"
             android:contentDescription="@string/cd_switch" />
-
     </LinearLayout>
 </LinearLayout>
