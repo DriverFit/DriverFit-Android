@@ -3,12 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    style="@style/SCREEN"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.setting.SettingsFragment">
 
     <TextView
         android:id="@+id/btn_theme_setting"
-        style="@style/Text"
+        style="@style/TEXT"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
@@ -18,6 +19,7 @@
         android:gravity="center_vertical"
         android:padding="16dp"
         android:text="@string/theme_setting"
+        android:textSize="12sp"
         app:drawableStartCompat="@drawable/baseline_theme"
         app:drawableTint="@color/blue"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,7 +29,7 @@
 
     <TextView
         android:id="@+id/btn_logout"
-        style="@style/Text"
+        style="@style/TEXT"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
@@ -36,6 +38,7 @@
         android:focusable="true"
         android:gravity="center_vertical"
         android:padding="16dp"
+        android:textSize="12sp"
         android:text="@string/log_out"
         app:drawableStartCompat="@drawable/baseline_logout_24"
         app:drawableTint="@color/blue"

@@ -1,19 +1,35 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.DriverFit" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
+    <style name="Base.Theme.DriverFit" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary Brand Color -->
         <item name="colorPrimary">@color/blue</item>
         <item name="colorPrimaryVariant">@color/dark_blue</item>
         <item name="colorOnPrimary">@color/white</item>
-
-        <item name="android:windowBackground">@color/white</item>
+        <!-- Secondary Brand Color-->
+        <item name="colorSecondary">#FF00A86B</item>
+        <item name="colorSecondaryVariant">#FF007A4A</item>
+        <item name="colorOnSecondary">#FFFFFDFE</item>
     </style>
 
-    <style name="Theme.DriverFit" parent="Base.Theme.DriverFit" />
-    <style name="Text.AppTitle">
-        <item name="android:textColor">@color/blue</item>
+    <!-- Light mode-->
+    <!-- Screen background if light mode on-->
+    <style name="SCREEN">
+        <item name="android:background">@color/white</item>
     </style>
-    <style name="Text">
-        <item name="android:textColor">@color/blue</item>
+
+    <!-- Texts background if light mode on-->
+    <style name="TEXT">
+        <item name="android:textColor">@color/dark_blue</item>
+    </style>
+
+    <!-- Button background if light mode on-->
+    <style name="BUTTON">
+        <item name="android:background">@color/blue</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!-- CardView background if light mode on-->
+    <style name="CARDVIEW" parent="CardView">
+        <item name="cardBackgroundColor">@color/white_300</item>
     </style>
 </resources>

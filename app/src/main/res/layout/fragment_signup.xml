@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="bindViewModel"
             type="id.ac.unri.driverfit.ui.signup.SignUpViewModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView
+        style="@style/SCREEN"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context="id.ac.unri.driverfit.ui.AuthActivity">
@@ -21,6 +21,7 @@
             android:layout_height="match_parent">
 
             <TextView
+                style="@style/TEXT"
                 android:id="@+id/login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -29,7 +30,6 @@
                 android:gravity="center"
                 android:text="@string/register"
                 android:textAlignment="center"
-                android:textColor="#004D91"
                 android:textSize="36.53sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -72,7 +72,8 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/nama_string"
                         android:inputType="textEmailAddress"
-                        android:text="@={bindViewModel._name}" />
+                        android:text="@={bindViewModel._name}"
+                        style="@style/TEXT"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -88,7 +89,8 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/email_string"
                         android:inputType="textEmailAddress"
-                        android:text="@={bindViewModel._email}" />
+                        android:text="@={bindViewModel._email}"
+                        style="@style/TEXT"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -105,7 +107,8 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/password_string"
                         android:inputType="textPassword"
-                        android:text="@={bindViewModel._password}" />
+                        android:text="@={bindViewModel._password}"
+                        style="@style/TEXT"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -122,7 +125,8 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/confirm_password"
                         android:inputType="textPassword"
-                        android:text="@={bindViewModel._confirmPassword}" />
+                        android:text="@={bindViewModel._confirmPassword}"
+                        style="@style/TEXT"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.button.MaterialButton
@@ -139,7 +143,7 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_navigate_to_login"
-                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    style="@style/TEXT"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
                     android:layout_gravity="center_horizontal"
@@ -148,7 +152,6 @@
                     android:layout_marginBottom="15dp"
                     android:text="@string/sudah_punya_akun"
                     android:textAllCaps="false"
-                    android:textColor="#004D91"
                     android:textSize="13sp"
                     android:textStyle="bold" />
 

@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/SCREEN"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
@@ -33,12 +34,12 @@
         tools:src="@drawable/cad" />
 
     <TextView
+        style="@style/TEXT"
         android:id="@+id/tvName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Fulanah"
-        android:textColor="#004D91"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/civPicture"
@@ -56,24 +57,24 @@
         app:layout_constraintTop_toTopOf="@+id/tvTelp" />
 
     <TextView
+        style= "@style/TEXT"
         android:id="@+id/tvTelp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:text="Telpon"
-        android:textColor="#004D91"
         android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/tvTelpValue"
         app:layout_constraintStart_toEndOf="@+id/ivTelp"
         app:layout_constraintTop_toBottomOf="@+id/tvName" />
 
     <TextView
+        style="@style/TEXT"
         android:id="@+id/tvTelpValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="+64 888888888"
-        android:textColor="#004D91"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="@+id/tvTelp"
         app:layout_constraintTop_toBottomOf="@+id/tvTelp" />
@@ -87,25 +88,24 @@
         app:layout_constraintStart_toStartOf="@+id/ivTelp"
         app:layout_constraintTop_toTopOf="@+id/tvEmail" />
 
-
     <TextView
+        style="@style/TEXT"
         android:id="@+id/tvEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:text="Email"
-        android:textColor="#004D91"
         android:textSize="15sp"
         app:layout_constraintStart_toEndOf="@+id/ivTelp"
         app:layout_constraintTop_toBottomOf="@+id/tvTelpValue" />
 
     <TextView
+        style="@style/TEXT"
         android:id="@+id/tvEmailValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="fulanah@gmail.com"
-        android:textColor="#004D91"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="@+id/tvEmail"
         app:layout_constraintTop_toBottomOf="@+id/tvEmail" />
