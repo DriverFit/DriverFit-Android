@@ -2,6 +2,7 @@ package id.ac.unri.driverfit.data.remote
 
 import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.view.Surface
 import id.ac.unri.driverfit.domain.model.Classification
 import id.ac.unri.driverfit.domain.repository.UserClassification
@@ -33,16 +34,44 @@ class TfLiteFaceUserClassifier(
             setupModel()
         }
 
-        val tensorBuffer =
+        val bmp = BitmapFactory.decodeFile(file.path)
+
+        // Creates inputs for reference.
+        val inputFeature0 =
             TensorBuffer.createFixedSize(intArrayOf(1, 256, 256, 3), DataType.FLOAT32)
+        val byteBuffer = ByteBuffer.allocateDirect(4 * 256 * 256 * 3)
 
-        tensorBuffer.loadBuffer(fileToByteBuffer(file))
+        // set the byte order of the buffer to be in big-endian format
+        byteBuffer.order(ByteOrder.nativeOrder())
 
-        val result = classifier?.process(tensorBuffer)
+        val intValues = IntArray(256 * 256)
+        bmp.getPixels(intValues, 0, bmp.width, 0, 0, bmp.width, bmp.height)
 
-        classifier?.close()
+        //iterate over each pixel and extract R, G, and B values. Add those values individually to the byte buffer.
+        var pixel = 0
+        for (i in 0 until 256) {
+            for (j in 0 until 256) {
+                val `val` = intValues[pixel++] // RGB
+                byteBuffer.putFloat((`val` shr 16 and 0xFF) * (1f / 255))
+                byteBuffer.putFloat((`val` shr 8 and 0xFF) * (1f / 255))
+                byteBuffer.putFloat((`val` and 0xFF) * (1f / 255))
+            }
+        }
 
-        TODO()
+        inputFeature0.loadBuffer(byteBuffer)
+
+        // Runs model inference and gets result.
+        val outputs = classifier?.process(inputFeature0)
+
+        val outputFeature0 = outputs?.outputFeature0AsTensorBuffer
+
+        val confidences = outputFeature0!!.floatArray
+
+        return if (confidences[0] > 0.5F) {
+            Classification("Fatigue", confidences[0])
+        } else {
+            Classification("Active", confidences[0])
+        }
     }
 
     override fun classify(bitmap: Bitmap, rotation: Int): Classification {

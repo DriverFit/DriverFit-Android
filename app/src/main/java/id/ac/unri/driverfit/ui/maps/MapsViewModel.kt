@@ -1,65 +1,74 @@
 package id.ac.unri.driverfit.ui.maps
 
+import MapsPagingSource
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
 import com.google.android.gms.location.FusedLocationProviderClient
 import dagger.hilt.android.lifecycle.HiltViewModel
-import id.ac.unri.driverfit.domain.model.Place
 import id.ac.unri.driverfit.domain.usecase.GetPlaceUseCase
+import id.ac.unri.driverfit.domain.usecase.GetRestPlaceUseCase
 import id.ac.unri.driverfit.domain.usecase.GetUserUseCase
 import id.ac.unri.driverfit.ui.utils.locationFlow
-import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.shareIn
-import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
+@OptIn(ExperimentalCoroutinesApi::class)
 @HiltViewModel
 class MapsViewModel @Inject constructor(
     getUserUseCase: GetUserUseCase,
     fusedLocationProviderClient: FusedLocationProviderClient,
     private val getPlaceUseCase: GetPlaceUseCase,
+    private val getRestPlaceUseCase: GetRestPlaceUseCase,
     private val savedStateHandle: SavedStateHandle,
-    private val dispatcher: CoroutineDispatcher,
 ) : ViewModel() {
+    val isLoogedIn = getUserUseCase.invoke()
+        .filterNotNull()
+        .asLiveData()
 
     private val locationFlow = fusedLocationProviderClient
         .locationFlow()
         .shareIn(viewModelScope, SharingStarted.Lazily)
 
-    private val _place = MutableStateFlow<Place?>(null)
-    val place = _place.asStateFlow()
+    private val permissionGranted = MutableStateFlow(false)
+    val places = permissionGranted
+        .flatMapLatest {
+            if (it) locationFlow else throw RuntimeException("Permission is needed")
+        }.map {
+            Pager(
+                config = androidx.paging.PagingConfig(
+                    pageSize = 20,
+                    enablePlaceholders = false
+                ),
+                pagingSourceFactory = {
+                    MapsPagingSource(
+                        getRestPlaceUseCase = getRestPlaceUseCase,
+                        lat = it.latitude,
+                        lng = it.longitude,
+                        type = "restaurant"
+                    )
+                }
+            ).flow
+        }
 
-    val isLoogedIn = getUserUseCase.invoke()
-        .filterNotNull()
-        .asLiveData()
+    private val _loading = MutableStateFlow(false)
+    val loading = _loading.asStateFlow()
 
     private val _snackbar = MutableSharedFlow<String>()
     val snackbar = _snackbar.asLiveData()
 
-    init {
-        loadPlace()
-    }
-
-    private fun loadPlace() {
-        viewModelScope.launch(dispatcher) {
-            val placeId = savedStateHandle.get<String>(KEY_PLACE_ID) ?: return@launch
-            getPlaceUseCase(placeId)
-                .onSuccess { place ->
-                    _place.value = place
-                }
-                .onFailure { e ->
-                    Timber.e(e)
-                    _snackbar.emit("Failed to load place")
-                }
-        }
+    fun loadPlacesIfPermissionGranted(granted: Boolean) {
+        permissionGranted.value = granted
     }
 
     companion object {

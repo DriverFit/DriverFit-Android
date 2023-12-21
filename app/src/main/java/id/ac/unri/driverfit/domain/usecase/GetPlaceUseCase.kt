@@ -1,6 +1,7 @@
 package id.ac.unri.driverfit.domain.usecase
 
-import id.ac.unri.driverfit.domain.model.Place
+
+import id.ac.unri.driverfit.data.remote.payload.Place
 import id.ac.unri.driverfit.domain.repository.GoogleMapsRepository
 
 class GetPlaceUseCase(

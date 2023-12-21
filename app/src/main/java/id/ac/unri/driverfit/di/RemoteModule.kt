@@ -11,6 +11,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import id.ac.unri.driverfit.BuildConfig
 import id.ac.unri.driverfit.data.remote.GoogleMapRemoteDataSource
+import id.ac.unri.driverfit.data.remote.TfLiteFaceUserClassifier
 import id.ac.unri.driverfit.data.remote.UserRemoteDataSource
 import id.ac.unri.driverfit.data.remote.service.GoogleMapService
 import id.ac.unri.driverfit.data.remote.service.UserService
@@ -66,13 +67,21 @@ object RemoteModule {
 
     @Provides
     @Singleton
+    fun provideTfLiteUserClassifierDataSource(
+        @ApplicationContext context: Context
+    ): TfLiteFaceUserClassifier {
+        return TfLiteFaceUserClassifier(context)
+    }
+
+    @Provides
+    @Singleton
     fun provideGoogleMapRemoteDataSource(
         @ApplicationContext context: Context,
         retrofit: Retrofit
     ): GoogleMapRemoteDataSource {
         val googleMapService = retrofit.create<GoogleMapService>()
 
-        Places.initialize(context, "TODO")
+        Places.initialize(context, "AIzaSyBfRJ-jw_2gIFzyGU_NJbWvKQGZSSME3_I")
         val placesClient = Places.createClient(context)
 
         return GoogleMapRemoteDataSource(googleMapService, placesClient)

@@ -1,6 +1,7 @@
 package id.ac.unri.driverfit.domain.repository
 
-import id.ac.unri.driverfit.domain.model.Place
+import id.ac.unri.driverfit.data.remote.payload.Place
+import id.ac.unri.driverfit.domain.model.NerbyPlace
 
 interface GoogleMapsRepository {
 
@@ -9,8 +10,9 @@ interface GoogleMapsRepository {
         lng: Double,
         radius: Double,
         type: String,
-        keyword: String
-    ): List<Place>
+        keyword: String,
+        pageToken: String? = null
+    ): NerbyPlace
 
     suspend fun getPlace(placeId: String): Place
 }

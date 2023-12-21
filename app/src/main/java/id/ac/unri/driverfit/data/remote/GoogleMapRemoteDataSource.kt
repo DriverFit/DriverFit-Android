@@ -20,12 +20,13 @@ class GoogleMapRemoteDataSource(
     suspend fun getNearby(
         lat: Double,
         lng: Double,
-        radius: Double?,
+        radius: Double,
         type: String?,
-        keyword: String?
-    ): List<NearbySearchResponse.Place> {
-        val res = googleMapService.getNearby("$lat,$lng", radius, type, keyword)
-        val data = res.takeIf { it.isSuccessful }?.body()?.places
+        keyword: String?,
+        pagetoken: String?
+    ): NearbySearchResponse {
+        val res = googleMapService.getNearby("$lat,$lng", radius, type, keyword, pagetoken)
+        val data = res.takeIf { it.isSuccessful }?.body()
         if (data == null) {
             res.errorBody()?.let { throw RuntimeException(it.getErrorMessage()) }
         }

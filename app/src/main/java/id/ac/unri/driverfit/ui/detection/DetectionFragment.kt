@@ -1,6 +1,7 @@
 package id.ac.unri.driverfit.ui.detection
 
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import id.ac.unri.driverfit.databinding.FragmentDetectionBinding
@@ -52,6 +54,7 @@ class DetectionFragment : Fragment() {
             ActivityResultContracts.StartActivityForResult(),
             ::onCameraResult
         )
+
     }
 
     override fun onCreateView(
@@ -61,8 +64,33 @@ class DetectionFragment : Fragment() {
     ): View {
         _binding = FragmentDetectionBinding.inflate(inflater, container, false)
 
-        binding.cameraButton.setOnClickListener {
+        binding.btnRetake.setOnClickListener {
             requestCameraAndStart(cameraLauncher)
+        }
+
+        binding.btnFindPlace.setOnClickListener {
+            findNavController().navigate(DetectionFragmentDirections.actionNavigationDetectionToNavigationMaps())
+        }
+
+        viewModel.image.observe(viewLifecycleOwner) {
+            if (it != null) {
+                val bmp = BitmapFactory.decodeFile(it.path)
+                binding.civPicture.setImageBitmap(bmp)
+                return@observe
+            }
+            requestCameraAndStart(cameraLauncher)
+        }
+
+        viewModel.result.observe(viewLifecycleOwner) {
+            if (it != null && it.scores > 0.5F) {
+                binding.tvResultMessage.text = "You are sleepy"
+            } else {
+                binding.tvResultMessage.text = "You are not sleepy"
+            }
+        }
+
+        viewModel.loading.observe(viewLifecycleOwner) {
+            binding.circularProgressBar.visibility = if (it) View.VISIBLE else View.GONE
         }
 
         return binding.root
@@ -105,6 +133,6 @@ class DetectionFragment : Fragment() {
         val data = result.data
         val imageFile = data?.getSerializableExtra(CameraActivity.KEY_IMAGE_RESULT) as File
 
-
+        viewModel.setResult(imageFile)
     }
 }

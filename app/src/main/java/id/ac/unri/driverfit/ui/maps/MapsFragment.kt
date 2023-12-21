@@ -10,20 +10,25 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewModelScope
 import com.google.android.gms.maps.model.LatLngBounds
+import dagger.hilt.android.AndroidEntryPoint
 import id.ac.unri.driverfit.R
-import id.ac.unri.driverfit.data.local.adapter.MapsAdapter
+import id.ac.unri.driverfit.data.remote.payload.Place
 import id.ac.unri.driverfit.databinding.FragmentMapSuggestionsBinding
-import id.ac.unri.driverfit.domain.model.Place
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 
-class StoryLocationFragment : Fragment(), MenuProvider, MapsAdapter.OnItemClickListener {
+@AndroidEntryPoint
+class MapsFragment : Fragment(), MenuProvider, MapsAdapter.OnItemClickListener {
 
     private val viewModel: MapsViewModel by viewModels()
 
@@ -33,8 +38,14 @@ class StoryLocationFragment : Fragment(), MenuProvider, MapsAdapter.OnItemClickL
         registerForActivityResult(
             ActivityResultContracts.RequestPermission()
         ) { isGranted: Boolean ->
+            viewModel.loadPlacesIfPermissionGranted(isGranted)
             if (isGranted) {
-                getMyLocation()
+                lifecycleScope.launch(viewModel.viewModelScope.coroutineContext) {
+                    viewModel.places.collectLatest {
+                        val places = it.first()
+                        adapter.submitData(places)
+                    }
+                }
             } else {
                 AlertDialog.Builder(requireContext())
                     .setTitle("Permission Required")
@@ -77,7 +88,7 @@ class StoryLocationFragment : Fragment(), MenuProvider, MapsAdapter.OnItemClickL
         val menuHost: MenuHost = requireActivity()
         menuHost.addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
-        (requireActivity() as AppCompatActivity).setSupportActionBar(binding.toolbar)
+
     }
 
     private fun getMyLocation() {
@@ -86,7 +97,13 @@ class StoryLocationFragment : Fragment(), MenuProvider, MapsAdapter.OnItemClickL
                 android.Manifest.permission.ACCESS_FINE_LOCATION
             ) == PackageManager.PERMISSION_GRANTED
         ) {
-
+            viewModel.loadPlacesIfPermissionGranted(true)
+            lifecycleScope.launch(viewModel.viewModelScope.coroutineContext) {
+                viewModel.places.collectLatest {
+                    val places = it.first()
+                    adapter.submitData(places)
+                }
+            }
         } else {
             requestPermissionLauncher.launch(android.Manifest.permission.ACCESS_FINE_LOCATION)
         }

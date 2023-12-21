@@ -6,11 +6,14 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.scopes.ViewModelScoped
 import id.ac.unri.driverfit.R
+import id.ac.unri.driverfit.domain.repository.DetectionRepository
 import id.ac.unri.driverfit.domain.repository.GoogleMapsRepository
 import id.ac.unri.driverfit.domain.repository.UserRepository
 import id.ac.unri.driverfit.domain.usecase.DarkThemeUseCase
+import id.ac.unri.driverfit.domain.usecase.DetectFaceUseCase
 import id.ac.unri.driverfit.domain.usecase.EditUserUseCase
 import id.ac.unri.driverfit.domain.usecase.GetPlaceUseCase
+import id.ac.unri.driverfit.domain.usecase.GetRestPlaceUseCase
 import id.ac.unri.driverfit.domain.usecase.GetUserUseCase
 import id.ac.unri.driverfit.domain.usecase.OnboardingUseCase
 import id.ac.unri.driverfit.domain.usecase.SignInUseCase
@@ -74,12 +77,6 @@ object UseCaseModule {
 
     @Provides
     @ViewModelScoped
-    fun provideGetPlaceUseCase(googleMapsRepository: GoogleMapsRepository): GetPlaceUseCase {
-        return GetPlaceUseCase(googleMapsRepository)
-    }
-
-    @Provides
-    @ViewModelScoped
     fun provideEditUserUseCase(userRepository: UserRepository): EditUserUseCase {
         return EditUserUseCase(userRepository)
     }
@@ -100,5 +97,26 @@ object UseCaseModule {
     @ViewModelScoped
     fun provideDarkThemeUseCase(userRepository: UserRepository): DarkThemeUseCase {
         return DarkThemeUseCase(userRepository)
+    }
+
+    @Provides
+    @ViewModelScoped
+    fun provideDetectFaceUseCase(
+        userRepository: UserRepository,
+        detectionRepository: DetectionRepository
+    ): DetectFaceUseCase {
+        return DetectFaceUseCase(userRepository, detectionRepository)
+    }
+
+    @Provides
+    @ViewModelScoped
+    fun provideGetPlaceUseCase(googleMapsRepository: GoogleMapsRepository): GetPlaceUseCase {
+        return GetPlaceUseCase(googleMapsRepository)
+    }
+
+    @Provides
+    @ViewModelScoped
+    fun provideGetRestPlaceUseCase(googleMapsRepository: GoogleMapsRepository): GetRestPlaceUseCase {
+        return GetRestPlaceUseCase(googleMapsRepository)
     }
 }

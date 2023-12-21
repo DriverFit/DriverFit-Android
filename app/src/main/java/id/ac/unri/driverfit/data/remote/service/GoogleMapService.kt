@@ -7,7 +7,7 @@ import retrofit2.http.Query
 
 interface GoogleMapService {
 
-    @GET("https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=")
+    @GET("https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyBfRJ-jw_2gIFzyGU_NJbWvKQGZSSME3_I")
     suspend fun getNearby(
         @Query("location")
         location: String?,
@@ -16,6 +16,8 @@ interface GoogleMapService {
         @Query("type")
         type: String?,
         @Query("keyword")
-        keyword: String?
+        keyword: String?,
+        @Query("pagetoken")
+        pagetoken: String?
     ): Response<NearbySearchResponse>
 }

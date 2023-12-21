@@ -1,12 +1,12 @@
-package id.ac.unri.driverfit.data.local.adapter
+package id.ac.unri.driverfit.ui.maps
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import id.ac.unri.driverfit.data.remote.payload.Place
 import id.ac.unri.driverfit.databinding.ItemNearestPlacesBinding
-import id.ac.unri.driverfit.domain.model.Place
 
 class MapsAdapter :
     PagingDataAdapter<Place, MapsAdapter.ViewHolder>(DIFF_CALLBACK) {
@@ -73,7 +73,7 @@ class MapsAdapter :
                 oldItem: Place,
                 newItem: Place
             ): Boolean {
-                return oldItem.id == newItem.id
+                return oldItem.placeId == newItem.placeId
             }
         }
     }
