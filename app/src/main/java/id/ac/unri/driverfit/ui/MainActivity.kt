@@ -1,7 +1,9 @@
 package id.ac.unri.driverfit.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -10,17 +12,26 @@ import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import id.ac.unri.driverfit.R
 import id.ac.unri.driverfit.databinding.ActivityMainBinding
+import id.ac.unri.driverfit.ui.main.MainViewModel
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
+    private val viewModel: MainViewModel by viewModels()
 
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        viewModel.user.observe(this) { user ->
+            if (user == null) {
+                startActivity(Intent(this, AuthActivity::class.java))
+                finish()
+            }
+        }
 
         setSupportActionBar(binding.toolbar)
 

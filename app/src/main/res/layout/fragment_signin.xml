@@ -112,7 +112,6 @@
                     android:layout_marginTop="15dp"
                     android:background="@drawable/rectangle_button_blue_shape"
                     android:text="@string/login"
-                    android:textColor="#FFFFFF"
                     android:textStyle="bold"
                     app:cornerRadius="0dp" />
 

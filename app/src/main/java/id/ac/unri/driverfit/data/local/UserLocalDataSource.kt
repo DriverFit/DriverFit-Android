@@ -1,7 +1,7 @@
 package id.ac.unri.driverfit.data.local
 
-import id.ac.unri.driverfit.data.local.Entity.UserEntity
 import id.ac.unri.driverfit.data.local.datastore.UserPreferences
+import id.ac.unri.driverfit.data.local.entity.UserEntity
 import kotlinx.coroutines.flow.Flow
 
 class UserLocalDataSource(

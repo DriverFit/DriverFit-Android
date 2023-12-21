@@ -13,14 +13,13 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:gravity="center"
-        android:text="Loading"
-        android:textColor="@color/white"
+        android:text="@string/loading"
         android:textSize="16sp"
         android:textStyle="bold" />
 
@@ -31,14 +30,14 @@
         android:orientation="horizontal"
         android:paddingVertical="16dp">
 
-        <ImageButton
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/gallery_button"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:background="@drawable/baseline_add_photo_alternate"
             android:contentDescription="@string/cd_gallery" />
 
-        <ImageButton
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/camera_button"
             android:layout_width="45dp"
             android:layout_height="45dp"
@@ -46,7 +45,7 @@
             android:background="@drawable/baseline_photo_camera_24"
             android:contentDescription="@string/cd_camera" />
 
-        <ImageButton
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/switch_button"
             android:layout_width="45dp"
             android:layout_height="45dp"

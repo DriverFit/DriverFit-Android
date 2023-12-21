@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
@@ -18,9 +18,7 @@ import id.ac.unri.driverfit.ui.MainActivity
 @AndroidEntryPoint
 class SigninFragment : Fragment() {
 
-    private val viewModel: SigninViewModel by lazy {
-        ViewModelProvider(this)[SigninViewModel::class.java]
-    }
+    private val viewModel: SigninViewModel by viewModels()
 
     private var _binding: FragmentSigninBinding? = null
 

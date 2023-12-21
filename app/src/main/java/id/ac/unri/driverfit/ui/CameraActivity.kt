@@ -52,7 +52,8 @@ class CameraActivity : ComponentActivity() {
     private lateinit var cameraPreview: Preview
     private lateinit var imageAnalysis: ImageAnalysis
 
-    private val cameraViewModel = viewModels<CameraViewModel>()
+    private val viewModel: CameraViewModel by viewModels()
+
     private var isDetecting = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,7 +72,7 @@ class CameraActivity : ComponentActivity() {
         cameraSelector =
             CameraSelector.Builder().requireLensFacing(CameraSelector.LENS_FACING_FRONT).build()
 
-        cameraViewModel.value.cameraProvider.observe(this) { provider ->
+        viewModel.cameraProvider.observe(this) { provider ->
             processCameraProvider = provider
             bindUseCase()
         }

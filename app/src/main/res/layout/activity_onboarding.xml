@@ -29,7 +29,7 @@
         app:ci_height="8dp"
         app:ci_width="8dp" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_getStarted"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

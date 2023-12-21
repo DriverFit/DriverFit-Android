@@ -1,6 +1,6 @@
 package id.ac.unri.driverfit.data.mapper
 
-import id.ac.unri.driverfit.data.local.Entity.UserEntity
+import id.ac.unri.driverfit.data.local.entity.UserEntity
 import id.ac.unri.driverfit.data.remote.payload.UserResponse
 import id.ac.unri.driverfit.domain.model.User
 

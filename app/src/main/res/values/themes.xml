@@ -11,6 +11,11 @@
         <item name="colorOnSecondary">#FFFFFDFE</item>
     </style>
 
+    <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
+        <item name="cornerSize">50%</item>
+        <item name="scaleType">fillCenter</item>
+    </style>
+
     <!-- Light mode-->
     <!-- Screen background if light mode on-->
     <style name="SCREEN">

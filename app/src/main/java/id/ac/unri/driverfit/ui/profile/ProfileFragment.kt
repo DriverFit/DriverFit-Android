@@ -35,7 +35,6 @@ class ProfileFragment : Fragment(), MenuProvider {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
 
         return binding.root
@@ -48,11 +47,17 @@ class ProfileFragment : Fragment(), MenuProvider {
         menuHost.addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
         viewModel.isLoogedIn.observe(viewLifecycleOwner) {
+            binding.tvName.text = it.name.ifBlank {
+                getString(R.string.profile_name_placeholder)
+            }
+
             Glide.with(this)
                 .load(it.photo)
                 .placeholder(R.drawable.profile_image_placeholder)
                 .circleCrop()
                 .into(binding.civPicture)
+
+            binding.tvEmailValue.text = it.email
         }
 
         viewModel.snackbar.observe(viewLifecycleOwner) {
@@ -73,9 +78,10 @@ class ProfileFragment : Fragment(), MenuProvider {
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
         return when (menuItem.itemId) {
             R.id.action_settings -> {
-                findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToSettingFragment())
+                findNavController().navigate(ProfileFragmentDirections.actionNavigationProfileToNavigationSettings())
                 true
             }
+
             else -> false
         }
     }

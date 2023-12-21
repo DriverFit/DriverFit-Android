@@ -22,7 +22,7 @@ import java.io.File
 @AndroidEntryPoint
 class DetectionFragment : Fragment() {
 
-    private val detectionViewModel by viewModels<DetectionViewModel>()
+    private val viewModel: DetectionViewModel by viewModels()
 
     private val cameraPermission = android.Manifest.permission.CAMERA
     private var _binding: FragmentDetectionBinding? = null

@@ -1,4 +1,4 @@
-package id.ac.unri.driverfit.data.local.Entity
+package id.ac.unri.driverfit.data.local.entity
 
 data class UserEntity(
     val id: String,

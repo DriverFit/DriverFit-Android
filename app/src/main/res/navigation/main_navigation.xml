@@ -10,8 +10,8 @@
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" >
         <action
-            android:id="@+id/action_navigation_profile_to_settingFragment"
-            app:destination="@id/settingFragment" />
+            android:id="@+id/action_navigation_profile_to_navigation_settings"
+            app:destination="@id/navigation_settings" />
     </fragment>
     <fragment
         android:id="@+id/navigation_home"
@@ -22,12 +22,21 @@
         android:id="@+id/navigation_detection"
         android:name="id.ac.unri.driverfit.ui.detection.DetectionFragment"
         android:label="@string/title_dectection"
-        tools:layout="@layout/fragment_detection" />
+        tools:layout="@layout/fragment_detection" >
+        <action
+            android:id="@+id/action_navigation_detection_to_navigation_maps"
+            app:destination="@id/navigation_maps" />
+    </fragment>
     <fragment
-        android:id="@+id/settingFragment"
+        android:id="@+id/navigation_settings"
         android:name="id.ac.unri.driverfit.ui.setting.SettingsFragment"
         android:label="Pengaturan"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/navigation_maps"
+        android:name="id.ac.unri.driverfit.ui.maps.MapsFragment"
+        tools:layout="@layout/fragment_map_suggestions"
+        android:label="MapsFragment" />
 
 </navigation>
 

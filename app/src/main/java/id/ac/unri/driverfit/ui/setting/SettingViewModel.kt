@@ -5,7 +5,6 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import id.ac.unri.driverfit.domain.usecase.DarkThemeUseCase
-import id.ac.unri.driverfit.domain.usecase.GetUserUseCase
 import id.ac.unri.driverfit.domain.usecase.SignOutUseCase
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -17,12 +16,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SettingViewModel @Inject constructor(
-    getUserUseCase: GetUserUseCase,
     val dispatcher: CoroutineDispatcher,
     private val signOutUseCase: SignOutUseCase,
     private val darkThemeUseCase: DarkThemeUseCase
 ) : ViewModel() {
-    val user = getUserUseCase().asLiveData()
     val darkTheme = darkThemeUseCase().asLiveData()
 
     private val _loading = MutableStateFlow(false)

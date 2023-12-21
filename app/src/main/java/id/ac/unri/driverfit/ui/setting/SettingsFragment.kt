@@ -1,7 +1,6 @@
 package id.ac.unri.driverfit.ui.setting
 
 import android.app.AlertDialog
-import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -14,7 +13,6 @@ import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import id.ac.unri.driverfit.databinding.ChooseThemeDialogBinding
 import id.ac.unri.driverfit.databinding.FragmentSettingsBinding
-import id.ac.unri.driverfit.ui.AuthActivity
 
 @AndroidEntryPoint
 class SettingsFragment : Fragment() {
@@ -73,7 +71,16 @@ class SettingsFragment : Fragment() {
         }
 
         binding.btnLogout.setOnClickListener {
-            viewModel.signOut()
+            AlertDialog.Builder(requireContext())
+                .setTitle("Sign Out")
+                .setMessage("Are you sure want to sign out?")
+                .setPositiveButton("Yes") { _, _ ->
+                    viewModel.signOut()
+                }
+                .setNegativeButton("No") { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .show()
         }
 
         return binding.root
@@ -96,15 +103,6 @@ class SettingsFragment : Fragment() {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
                 }
             }
-        }
-
-        viewModel.user.observe(viewLifecycleOwner) {
-            if (it == null) {
-                val intent = Intent(requireContext(), AuthActivity::class.java)
-                startActivity(intent)
-                requireActivity().finish()
-            }
-
         }
 
         viewModel.loading.observe(viewLifecycleOwner) {

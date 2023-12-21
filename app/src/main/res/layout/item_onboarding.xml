@@ -8,7 +8,7 @@
     android:padding="16dp"
     android:weightSum="2.7">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imageStarter"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -17,7 +17,7 @@
         android:contentDescription="@null"
         tools:src="@drawable/ic_launcher_background" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         style="@style/TEXT"
         android:id="@+id/judulStarter"
         android:layout_width="match_parent"
@@ -28,8 +28,7 @@
         android:textSize="20sp"
         android:textStyle="bold" />
 
-    <TextView
-        style="@style/TEXT"
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/deskStarter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
