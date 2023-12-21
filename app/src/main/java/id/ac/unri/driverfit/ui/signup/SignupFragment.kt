@@ -72,7 +72,7 @@ class SignupFragment : Fragment() {
         }
 
         viewModel.loading.observe(viewLifecycleOwner) {
-            binding.indicator.visibility = if (it) View.VISIBLE else View.GONE
+            binding.circularProgressBar.visibility = if (it) View.VISIBLE else View.GONE
         }
 
         return binding.root

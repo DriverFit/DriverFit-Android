@@ -28,9 +28,14 @@
     <string name="intro_homescreen">Siap berkendara hari ini?</string>
 
     <!-- Setting -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="setting">Pengaturan</string>
     <string name="log_out">Keluar</string>
     <string name="theme_setting">Tema</string>
+    <string name="light_mode">Terang</string>
+    <string name="dark_mode">Gelap</string>
+    <string name="system_mode">Bawaan Sistem</string>
+    <string name="choose_theme">Pilih Tema</string>
 
     <!-- Bottom Navigation -->
     <string name="title_home">Beranda</string>
@@ -53,11 +58,5 @@
     <string name="cd_gallery">Gallery</string>
     <string name="cd_switch">Switch Camera</string>
     <string name="tb_deteksi">Deteksi Wajah</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="light_mode">Terang</string>
-    <string name="dark_mode">Gelap</string>
-    <string name="system_mode">Bawaan Sistem</string>
-    <string name="choose_theme">Pilih Tema</string>
 
 </resources>

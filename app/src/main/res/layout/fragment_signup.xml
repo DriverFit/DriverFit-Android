@@ -143,7 +143,7 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_navigate_to_login"
-                    style="@style/TEXT"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
                     android:layout_gravity="center_horizontal"
@@ -152,20 +152,21 @@
                     android:layout_marginBottom="15dp"
                     android:text="@string/sudah_punya_akun"
                     android:textAllCaps="false"
+                    android:textColor="#004D91"
                     android:textSize="13sp"
                     android:textStyle="bold" />
 
             </LinearLayout>
 
             <com.google.android.material.progressindicator.CircularProgressIndicator
-                android:id="@+id/indicator"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                app:indicatorColor="@color/black"
+                android:id="@+id/circular_progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:indeterminate="true" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

@@ -1,6 +1,6 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
-    <style name="Base.Theme.DriverFit" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Theme.DriverFit" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Primary Brand Color -->
         <item name="colorPrimary">@color/blue</item>
         <item name="colorPrimaryVariant">@color/dark_blue</item>

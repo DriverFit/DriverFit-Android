@@ -10,7 +10,6 @@
     </data>
 
     <androidx.core.widget.NestedScrollView
-        style="@style/SCREEN"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.AuthActivity">
@@ -20,7 +19,6 @@
             android:layout_height="match_parent">
 
             <TextView
-                style="@style/TEXT"
                 android:id="@+id/login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -71,8 +69,7 @@
                         android:layout_height="wrap_content"
                         android:text="@={bindViewModel._email}"
                         android:hint="@string/email_string"
-                        android:inputType="textEmailAddress"
-                        style="@style/TEXT"/>
+                        android:inputType="textEmailAddress" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -89,19 +86,19 @@
                         android:layout_height="wrap_content"
                         android:text="@={bindViewModel._password}"
                         android:hint="@string/password"
-                        android:inputType="textPassword"
-                        style="@style/TEXT"/>
+                        android:inputType="textPassword" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/forgot_password_"
-                    style="@style/TEXT"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="wrap_content"
-                    android:layout_height="48dp"
+                    android:layout_height="35dp"
                     android:layout_gravity="right"
                     android:layout_marginHorizontal="32dp"
                     android:text="@string/forgot_password_string"
                     android:textAllCaps="false"
+                    android:textColor="#004D91"
                     android:textSize="13sp"
                     android:textStyle="bold" />
 
@@ -120,7 +117,7 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnNavigateToSignUp"
-                    style="@style/TEXT"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -136,14 +133,14 @@
             </LinearLayout>
 
             <com.google.android.material.progressindicator.CircularProgressIndicator
-                android:id="@+id/indicator"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                app:indicatorColor="@color/black"
+                android:id="@+id/circular_progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:indeterminate="true" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
