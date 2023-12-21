@@ -6,9 +6,11 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.scopes.ViewModelScoped
 import id.ac.unri.driverfit.R
+import id.ac.unri.driverfit.domain.repository.GoogleMapsRepository
 import id.ac.unri.driverfit.domain.repository.UserRepository
 import id.ac.unri.driverfit.domain.usecase.DarkThemeUseCase
 import id.ac.unri.driverfit.domain.usecase.EditUserUseCase
+import id.ac.unri.driverfit.domain.usecase.GetPlaceUseCase
 import id.ac.unri.driverfit.domain.usecase.GetUserUseCase
 import id.ac.unri.driverfit.domain.usecase.OnboardingUseCase
 import id.ac.unri.driverfit.domain.usecase.SignInUseCase
@@ -68,6 +70,12 @@ object UseCaseModule {
     @ViewModelScoped
     fun provideGetUserUseCase(userRepository: UserRepository): GetUserUseCase {
         return GetUserUseCase(userRepository)
+    }
+
+    @Provides
+    @ViewModelScoped
+    fun provideGetPlaceUseCase(googleMapsRepository: GoogleMapsRepository): GetPlaceUseCase {
+        return GetPlaceUseCase(googleMapsRepository)
     }
 
     @Provides

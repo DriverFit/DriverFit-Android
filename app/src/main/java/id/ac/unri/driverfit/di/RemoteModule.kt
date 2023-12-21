@@ -1,13 +1,18 @@
 package id.ac.unri.driverfit.di
 
+import android.content.Context
+import com.google.android.libraries.places.api.Places
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import id.ac.unri.driverfit.BuildConfig
+import id.ac.unri.driverfit.data.remote.GoogleMapRemoteDataSource
 import id.ac.unri.driverfit.data.remote.UserRemoteDataSource
+import id.ac.unri.driverfit.data.remote.service.GoogleMapService
 import id.ac.unri.driverfit.data.remote.service.UserService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -57,5 +62,19 @@ object RemoteModule {
     fun provideUserRemoteDataSource(retrofit: Retrofit): UserRemoteDataSource {
         val userService = retrofit.create<UserService>()
         return UserRemoteDataSource(userService)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGoogleMapRemoteDataSource(
+        @ApplicationContext context: Context,
+        retrofit: Retrofit
+    ): GoogleMapRemoteDataSource {
+        val googleMapService = retrofit.create<GoogleMapService>()
+
+        Places.initialize(context, "TODO")
+        val placesClient = Places.createClient(context)
+
+        return GoogleMapRemoteDataSource(googleMapService, placesClient)
     }
 }
