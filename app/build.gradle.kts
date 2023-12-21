@@ -67,9 +67,6 @@ dependencies {
     // Material Design dependencies
     implementation("com.google.android.material:material:1.11.0")
 
-    // CircleImageView
-    implementation("de.hdodenhof:circleimageview:3.1.0")
-
     // Hilts DI
     implementation("com.google.dagger:hilt-android:2.49")
     implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
@@ -114,6 +111,15 @@ dependencies {
 
     // Timber
     implementation("com.jakewharton.timber:timber:5.0.1")
+
+    // Paging dependencies
+    implementation("androidx.paging:paging-runtime-ktx:3.2.1")
+
+    // Google Maps dependencies
+    implementation("com.google.android.gms:play-services-maps:18.2.0")
+
+    // Places API
+    implementation("com.google.android.libraries.places:places:3.3.0")
 
     // Testing dependencies
     testImplementation("junit:junit:4.13.2")

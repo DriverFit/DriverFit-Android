@@ -2,13 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
 
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:name=".DriverFItApplication"
@@ -32,18 +33,18 @@
         </activity>
         <activity
             android:name=".ui.AuthActivity"
-            android:theme="@style/Theme.DriverFit"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.DriverFit" />
 
         <activity
             android:name=".ui.MainActivity"
-            android:theme="@style/Theme.DriverFit"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.DriverFit" />
 
         <activity
             android:name=".ui.CameraActivity"
-            android:theme="@style/Theme.DriverFit"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.DriverFit" />
     </application>
 
 </manifest>
