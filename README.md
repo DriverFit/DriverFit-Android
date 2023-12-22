@@ -1,6 +1,6 @@
 # DriverFit-Android
 
-Team members:
+Mobile development team member:
 1. Ratu Yuri Meissy- A012BSX2766 
 2. Tri Murniati - A308BSX2884
 
