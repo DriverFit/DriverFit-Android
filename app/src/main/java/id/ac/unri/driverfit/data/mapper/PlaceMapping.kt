@@ -5,7 +5,7 @@ import id.ac.unri.driverfit.domain.model.NerbyPlace
 
 fun NearbySearchResponse.asModel(): NerbyPlace {
     return NerbyPlace(
-        nextPageToken = nextPageToken ?: "",
+        nextPageToken = nextPageToken,
         place = places
     )
 }

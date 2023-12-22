@@ -63,9 +63,17 @@
     <string name="cd_camera">Camera</string>
     <string name="cd_gallery">Gallery</string>
     <string name="cd_switch">Switch Camera</string>
+    <string name="cd_article_image">example of an image of an article</string>
+
     <string name="tb_deteksi">Deteksi Wajah</string>
-    <string name="check_loaction">Check Location</string>
-    <string name="retake">retake picture</string>
+    <string name="check_loaction">Cek Lokasi</string>
+    <string name="retake">Ambil Ulang Gambar</string>
     <string name="find_place">take a break</string>
+
+    <!-- Article Details-->
+    <string name="title_of_article">Tips Menghilangkan Rasa Kantuk</string>
+    <string name="article_title">Judul Artikel</string>
+    <string name="article_description">Ngantuk saat berkendara dapat menjadi risiko serius bagi keselamatan. Artikel ini akan membahas beberapa strategi efektif untuk mengatasi rasa ngantuk dan menjaga kewaspadaan selama perjalanan.</string>
+
 
 </resources>

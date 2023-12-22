@@ -13,8 +13,6 @@ interface GoogleMapService {
         location: String?,
         @Query("radius")
         radius: Double?,
-        @Query("type")
-        type: String?,
         @Query("keyword")
         keyword: String?,
         @Query("pagetoken")

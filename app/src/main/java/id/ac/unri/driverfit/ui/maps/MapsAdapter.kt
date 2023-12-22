@@ -41,7 +41,7 @@ class MapsAdapter :
     ) : RecyclerView.ViewHolder(binding.root) {
 
         init {
-            binding.root.setOnClickListener {
+            binding.btnCheckLocation.setOnClickListener {
                 val position = bindingAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     val place = getItem(position)

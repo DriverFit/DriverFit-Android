@@ -9,6 +9,6 @@ class GetPlaceUseCase(
 ) {
 
     suspend operator fun invoke(placeId: String): Result<Place> = runCatching {
-        googleMapsRepository.getPlace(placeId)
+        TODO()
     }
 }

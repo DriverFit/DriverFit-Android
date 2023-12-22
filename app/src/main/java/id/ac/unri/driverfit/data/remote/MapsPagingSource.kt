@@ -7,7 +7,6 @@ class MapsPagingSource(
     private val getRestPlaceUseCase: GetRestPlaceUseCase,
     private val lat: Double,
     private val lng: Double,
-    private val type: String,
 ) : PagingSource<String, Place>() {
     override fun getRefreshKey(state: PagingState<String, Place>): String? {
         return null
@@ -19,7 +18,6 @@ class MapsPagingSource(
             val response = getRestPlaceUseCase(
                 lat = lat,
                 lng = lng,
-                type = type,
                 pageToken = currentPage
             )
             val nextPage = response.nextPageToken
@@ -33,4 +31,6 @@ class MapsPagingSource(
             LoadResult.Error(e)
         }
     }
+
+
 }

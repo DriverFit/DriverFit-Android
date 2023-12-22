@@ -84,6 +84,6 @@ object RemoteModule {
         Places.initialize(context, "AIzaSyBfRJ-jw_2gIFzyGU_NJbWvKQGZSSME3_I")
         val placesClient = Places.createClient(context)
 
-        return GoogleMapRemoteDataSource(googleMapService, placesClient)
+        return GoogleMapRemoteDataSource(googleMapService)
     }
 }

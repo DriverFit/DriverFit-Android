@@ -11,8 +11,8 @@ class GetRestPlaceUseCase(
         lat: Double,
         lng: Double,
         radius: Double = 5 * 1500.0,
-        type: String = "Rest Area",
+        keyword: String = "hotel",
         pageToken: String? = null
-    ): NerbyPlace = googleMapsRepository.getNearby(lat, lng, radius, type, type, pageToken)
+    ): NerbyPlace = googleMapsRepository.getNearby(lat, lng, radius, keyword, pageToken)
 
 }

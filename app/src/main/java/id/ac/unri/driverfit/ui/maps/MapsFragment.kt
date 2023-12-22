@@ -1,7 +1,9 @@
 package id.ac.unri.driverfit.ui.maps
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -18,7 +20,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
-import com.google.android.gms.maps.model.LatLngBounds
 import dagger.hilt.android.AndroidEntryPoint
 import id.ac.unri.driverfit.R
 import id.ac.unri.driverfit.data.remote.payload.Place
@@ -26,6 +27,7 @@ import id.ac.unri.driverfit.databinding.FragmentMapSuggestionsBinding
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+
 
 @AndroidEntryPoint
 class MapsFragment : Fragment(), MenuProvider, MapsAdapter.OnItemClickListener {
@@ -65,8 +67,6 @@ class MapsFragment : Fragment(), MenuProvider, MapsAdapter.OnItemClickListener {
 
     private val binding get() = _binding!!
 
-    private val boundsBuilder = LatLngBounds.Builder()
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -88,6 +88,22 @@ class MapsFragment : Fragment(), MenuProvider, MapsAdapter.OnItemClickListener {
         val menuHost: MenuHost = requireActivity()
         menuHost.addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
+        adapter.addLoadStateListener {
+            when (it.refresh) {
+                is androidx.paging.LoadState.Loading -> {
+                    binding.progressIndicator.visibility = View.VISIBLE
+                }
+
+                is androidx.paging.LoadState.Error -> {
+                    binding.progressIndicator.visibility = View.GONE
+                }
+
+                is androidx.paging.LoadState.NotLoading -> {
+                    binding.progressIndicator.visibility = View.GONE
+                }
+            }
+
+        }
 
     }
 
@@ -124,6 +140,22 @@ class MapsFragment : Fragment(), MenuProvider, MapsAdapter.OnItemClickListener {
     }
 
     override fun onItemClick(items: Place) {
+        // intent to google maps
+        openGoogleMaps(items)
+    }
+
+    private fun openGoogleMaps(place: Place) {
+
+        // Create a Uri for the Google Maps query
+        val uri =
+            Uri.parse("https://www.google.com/maps/search/?api=1&query=a&query_place_id=${place.placeId}")
+
+        // Create an Intent to open Google Maps
+        val mapIntent = Intent(Intent.ACTION_VIEW, uri)
+        mapIntent.setPackage("com.google.android.apps.maps")
+        if (mapIntent.resolveActivity(requireActivity().packageManager) != null) {
+            startActivity(mapIntent)
+        }
 
     }
 }

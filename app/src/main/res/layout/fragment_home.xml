@@ -1,92 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/SCREEN"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.MainActivity">
+    android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="16dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/nestedScrollView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <RelativeLayout
-            android:id="@+id/relativeLayout"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="@string/welcome"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_welcome_user"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginHorizontal="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="86dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/item_article" />
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/ivMainImage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:src="@drawable/homescreen" />
-
-            <LinearLayout
-                android:id="@+id/L_layout1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:src="@drawable/baseline_access_time_24" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tv_timeAccess"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/time_access"
-                    android:textColor="@color/white"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/L_layout1"
-                android:layout_marginTop="20dp"
-                android:orientation="vertical">
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tv_welcomeUser"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:text="@string/tv_welcome_user"
-                    android:textColor="@color/white"
-                    android:textSize="35sp"
-                    android:textStyle="bold" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="200dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/intro_homescreen"
-                    android:textColor="@color/white"
-                    android:textSize="35sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/civPicture"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_alignEnd="@id/ivMainImage"
-                android:layout_marginTop="8dp"
-                android:scaleType="centerCrop"
-                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
-                tools:src="@drawable/cad" />
-        </RelativeLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.core.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

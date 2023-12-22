@@ -1,14 +1,12 @@
 package id.ac.unri.driverfit.ui.maps
 
 import MapsPagingSource
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import com.google.android.gms.location.FusedLocationProviderClient
 import dagger.hilt.android.lifecycle.HiltViewModel
-import id.ac.unri.driverfit.domain.usecase.GetPlaceUseCase
 import id.ac.unri.driverfit.domain.usecase.GetRestPlaceUseCase
 import id.ac.unri.driverfit.domain.usecase.GetUserUseCase
 import id.ac.unri.driverfit.ui.utils.locationFlow
@@ -28,9 +26,7 @@ import javax.inject.Inject
 class MapsViewModel @Inject constructor(
     getUserUseCase: GetUserUseCase,
     fusedLocationProviderClient: FusedLocationProviderClient,
-    private val getPlaceUseCase: GetPlaceUseCase,
     private val getRestPlaceUseCase: GetRestPlaceUseCase,
-    private val savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
     val isLoogedIn = getUserUseCase.invoke()
         .filterNotNull()
@@ -55,7 +51,6 @@ class MapsViewModel @Inject constructor(
                         getRestPlaceUseCase = getRestPlaceUseCase,
                         lat = it.latitude,
                         lng = it.longitude,
-                        type = "restaurant"
                     )
                 }
             ).flow
